@@ -1,10 +1,10 @@
-The `docs/` folder has the [MarkDown](https://guides.github.com/features/mastering-markdown) content that is rendered to <https://biocompute-objects.github.io/bco-ro/> by [GitHub pages](https://pages.github.com/).
+The `docs/` folder has the [MarkDown](https://guides.github.com/features/mastering-markdown) content that is rendered to <https://biocompute-objects.github.io/bco-ro-crate/> by [GitHub pages](https://pages.github.com/).
 
-A file like `docs/intro.md` appears rendered as <https://biocompute-objects.github.io/bco-ro/intro.html> You may crosslink pages using relative links like `[background](background.md)` - the extension `.md` is replaced with `.html` in rendering.
+A file like `docs/intro.md` appears rendered as <https://biocompute-objects.github.io/bco-ro-crate/intro.html> You may crosslink pages using relative links like `[background](background.md)` - the extension `.md` is replaced with `.html` in rendering.
 
-Note that files outside `docs` are not accessible within `github.io` and must be linked to by absolute URLs, e.g. <https://github.com/biocompute-objects/bco-ro/README.md> (this file)
+Note that files outside `docs` are not accessible within `github.io` and must be linked to by absolute URLs, e.g. <https://github.com/biocompute-objects/bco-ro-crate/README.md> (this file)
 
-It is more important that pages render well at <https://biocompute-objects.github.io/bco-ro/> than in this  preview within the GitHub repository, as some MarkDown features only apply to the GitHub Pages (e.g. the `{:toc}` macro).
+It is more important that pages render well at <https://biocompute-objects.github.io/bco-ro-crate/> than in this  preview within the GitHub repository, as some MarkDown features only apply to the GitHub Pages (e.g. the `{:toc}` macro).
 
 ### Using the jekyll-rtd-theme
 
