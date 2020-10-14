@@ -1,0 +1,45 @@
+# Update according to
+# https://github.com/rundocs/jekyll-rtd-theme/releases/tag/v1.1.7
+remote_theme: rundocs/jekyll-rtd-theme@bb00646afd7f05b3f4badb32ce1710197c483dfd
+#theme: jekyll-rtd-theme
+logo: assets/img/biocomputeobject-rocrate.svg
+
+title: "BioCompute Objects RO-Crate"
+description: |
+ Tutorial and specification for packaging IEEE 2791-2020
+ as RO-Crate Research Objects.
+# rundocs/jekyll-rtd-theme theme settings
+addons_branch: false
+edit: true
+
+author: "The University of Manchester UK and BioCompute Object contributors"
+copyright:
+  since: 2020
+
+embed: |
+  <img src="/cwl-best-practice-guide/assets/img/cc-by.svg" />
+  Distributed under the
+  <a rel="license" href="https://spdx.org/licenses/BSD-3-Clause">BSD 3-Clause license</a>; except 
+  examples where the creators have waived all copyrights according to
+  <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</a>.
+
+addons:
+  - github
+  - plugins
+
+copyright:
+  revision: false
+  
+readme_index:
+  with_frontmatter: true
+
+plugins:
+  - jekyll-default-layout
+  - jekyll-readme-index
+  - jekyll-github-metadata
+  - jekyll-titles-from-headings
+  - jemoji
+  - jekyll-relative-links
+
+# Show the order prefix 1. 2. etc in toctree
+show_sorted: true
