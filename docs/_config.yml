@@ -17,7 +17,6 @@ copyright:
   since: 2020
 
 embed: |
-  <img src="/cwl-best-practice-guide/assets/img/cc-by.svg" />
   Distributed under the
   <a rel="license" href="https://spdx.org/licenses/BSD-3-Clause">BSD 3-Clause license</a>; except 
   examples where the creators have waived all copyrights according to
