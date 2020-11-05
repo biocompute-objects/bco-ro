@@ -243,28 +243,30 @@ find its (URI escaped) file path within the `data/` folder.
 
 If the BCO has a `object_id` that is globally unique, e.g. a 
 randomly generated [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) 
-then these can be reflected as `identifier` URIs in the RO-Crate. 
+then these can be reflected as `identifier` URIs in the RO-Crate if 
+combined with the registered `urn:uuid:` prefix.
 
-This can be useful when looking up BCOs later; RO-Crate Metadata files are valid
+This can be useful when looking up or matching 
+BCOs later; RO-Crate Metadata files are valid
 [JSON-LD](https://json-ld.org/) and can be loaded into a 
 knowledge graph using a _triple store_ like 
 [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/index.html) for 
 detailed [querying](https://jena.apache.org/tutorials/sparql.html).
-
 
 ```
 $ echo urn:uuid:`uuidgen`
 urn:uuid:dc308d7c-7949-446a-9c39-511b8ab40caf
 ```
 
-So we can change our BCO from the not-so-unique `chipseq_20200924` to:
+So we can change our BCO JSON's self-identity from the not-so-unique `chipseq_20200924` to:
 
 ```json
 "object_id": "urn:uuid:dc308d7c-7949-446a-9c39-511b8ab40caf"
 ```
 
-and add to the `chipseq_20200910.json` entry in `ro-crate-metadata.json`:
+and, now that we have a URI, add correspondingly to the `chipseq_20200910.json` entry in `ro-crate-metadata.json`:
 
 ```json
-"identifier": { "@id": "urn:uuid:dc308d7c-7949-446a-9c39-511b8ab40caf" }
+"identifier": "urn:uuid:dc308d7c-7949-446a-9c39-511b8ab40caf"
 ```
+
