@@ -51,7 +51,7 @@ data/ro-crate-metadata.json: FAILED
 sha512sum: WARNING: 2 computed checksums did NOT match
 ```
 
-Notice how the payload manifest list checksums of _all_ individual data outputs in [data/results], as well as the RO-Crate [data/ro-crate-metadata.json](data/ro-crate-metadata.json) and the IEEE 2791 BCO JSON [data/chipseq_20200910.json](data/chipseq_20200910.json). Although these files are strictly speaking _metadata_ we can consider them part of the `data/` _payload_ of transfering an RO-Crate containing a BioCompute Object, as [recommended by RO-Crate 1.0](https://w3id.org/ro/crate/1.0#example-of-adding-ro-crate-to-bagit).
+Notice how the payload manifest list checksums of _all_ individual data outputs in [data/results], as well as the RO-Crate [data/ro-crate-metadata.json](data/ro-crate-metadata.json) and the IEEE 2791 BCO JSON [data/chipseq_20200910.json](data/chipseq_20200910.json). Although these files are strictly speaking _metadata_ we can consider them part of the `data/` _payload_ of transfering an RO-Crate containing a BioCompute Object, as [recommended by RO-Crate 1.1](https://www.researchobject.org/ro-crate/1.1/appendix/implementation-notes.html#adding-ro-crate-to-bagit).
 
 Alternative checksums algorithm are allowed [according to RFC8493](https://www.rfc-editor.org/rfc/rfc8493.html#section-2.4), e.g. `manifest-sha256.txt` - as long as each manifest file is complete - here we use SHA-512 by default as recommended by RFC8493.
 
