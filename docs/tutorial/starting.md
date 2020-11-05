@@ -16,7 +16,7 @@ mkdir data
 
 Here we use a name `chipseq_20200924` as we ran the workflow `chipseq` on 2020-09-24 - you can use any reasonable name.
 
-The `data/` folder will contain our [RO-Crate](https://stain.github.io/ro-crate/1.1-DRAFT/) according to its [recommendation for combining with BagIt](https://stain.github.io/ro-crate/1.1-DRAFT/appendix/implementation_notes.html#combining-with-other-packaging-schemes).  If you will not be using BagIt you can skip the `data/` subfolder.
+The `data/` folder will contain our [RO-Crate](https://w3id.org/ro/crate/1.1) according to its [recommendation for combining with BagIt](https://www.researchobject.org/ro-crate/1.1/appendix/implementation_notes.html#combining-with-other-packaging-schemes).  If you will not be using BagIt you can skip the `data/` subfolder.
 
 Note that running the workflow can take a while, so this might be a good point to [skip ahead](#running-the-workflow) and start the Nextflow run in a separate window.
  
@@ -161,17 +161,17 @@ These additional PAV relations can also be provided, however we would need to be
 
 ### Skeleton RO-Crate
 
-Similarly let's create the high-level [RO-Crate](https://stain.github.io/ro-crate/1.1-DRAFT/). According to the [RO-Crate structure](https://stain.github.io/ro-crate/1.1-DRAFT/structure.html) the RO-Crate Metadata File always have the name `ro-crate-metadata.json` which we'll create inside `data/`:
+Similarly let's create the high-level [RO-Crate](https://w3id.org/ro/crate/1.1). According to the [RO-Crate structure](https://www.researchobject.org/ro-crate/1.1/structure.html) the RO-Crate Metadata File always have the name `ro-crate-metadata.json` which we'll create inside `data/`:
 
 **data/ro-crate-metadata.json**
 
 ```json
-{ "@context": "https://w3id.org/ro/crate/1.1-DRAFT/context", 
+{ "@context": "https://w3id.org/ro/crate/1.1/context", 
   "@graph": [
     {
         "@type": "CreativeWork",
         "@id": "ro-crate-metadata.json",
-        "conformsTo": {"@id": "https://w3id.org/ro/crate/1.1-DRAFT"},
+        "conformsTo": {"@id": "https://w3id.org/ro/crate/1.1"},
         "about": {"@id": "./"}
     },
     
@@ -183,13 +183,13 @@ Similarly let's create the high-level [RO-Crate](https://stain.github.io/ro-crat
 }
 ```
 
-This preamble  declares the version of the RO-Crate specification used, it's equivalent to BCO's `spec_version`. The remaining RO-Crate elements will be added to the `@graph` array as [data entities](https://stain.github.io/ro-crate/1.1-DRAFT/data-entities.html) (files and directories) or [contextual entities](https://stain.github.io/ro-crate/1.1-DRAFT/contextual-entities.html) (e.g.  people, organizations)
+This preamble  declares the version of the RO-Crate specification used, it's equivalent to BCO's `spec_version`. The remaining RO-Crate elements will be added to the `@graph` array as [data entities](https://www.researchobject.org/ro-crate/1.1/data-entities.html) (files and directories) or [contextual entities](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html) (e.g.  people, organizations)
 
-The [root of the RO-Crate](https://stain.github.io/ro-crate/1.1-DRAFT/root-data-entity.html) represents the whole _dataset_, in this case our `data/` folder, but also any external references like the nf-core workflow and reference data. We're going to use the RO-Crate metadata to provide further details on resources and their origin in the world, while the BCO provides finer-grained details of the workflow execution. 
+The [root of the RO-Crate](hhttps://www.researchobject.org/ro-crate/1.1/root-data-entity.html) represents the whole _dataset_, in this case our `data/` folder, but also any external references like the nf-core workflow and reference data. We're going to use the RO-Crate metadata to provide further details on resources and their origin in the world, while the BCO provides finer-grained details of the workflow execution. 
 
 In both cases we will mainly use relative paths within the `data/` directory, where also both metadata files reside. We notice thus that `./` for the root Dataset reflects the `data/` directory.
 
-We'll start by describing the RO-Crate itself under the `./` Dataset, including as a minimum the [core properties of the Root Data Entity](https://stain.github.io/ro-crate/1.1-DRAFT/root-data-entity.html#direct-properties-of-the-root-data-entity), although any of the <http://schema.org/Dataset> properties can be utillized:
+We'll start by describing the RO-Crate itself under the `./` Dataset, including as a minimum the [core properties of the Root Data Entity](https://www.researchobject.org/ro-crate/1.1/root-data-entity.html#direct-properties-of-the-root-data-entity), although any of the <http://schema.org/Dataset> properties can be utillized:
 
 ```json
 {
@@ -217,9 +217,9 @@ We'll start by describing the RO-Crate itself under the `./` Dataset, including 
 
 Already you will notice some differences from the BCO. The `name` could match the `provenance_domain/name` of the BCO - but as the BCO focus more on the workflow and the Dataset includes all the files we've changed it to include `"Workflow run of.."`. However if your RO-Crate did not include workflow results, then the two could have the same title. `description` allow us to provide a longer description - comparable to BCO's `usability_domain` which we'll populate later, but again decribing the whole dataset.
 
-The reason these fields are mainly at dataset level is that we can further describe individual files and resources later as separate [data entities](https://stain.github.io/ro-crate/1.1-DRAFT/data-entities.html). Therefore here the `author` of the dataset is  <https://orcid.org/0000-0001-9842-9718>, the ORCID identifier for Stian, as he ran the workflow and gathered (most of) the files, and `license` of the dataset (the whole folder) can be different from the license of the workflow. If need be `license`, `author` etc. can be different on the `ro-crate-metadata.json` entity if someone else made this JSON.
+The reason these fields are mainly at dataset level is that we can further describe individual files and resources later as separate [data entities](hhttps://www.researchobject.org/ro-crate/1.1/data-entities.html). Therefore here the `author` of the dataset is  <https://orcid.org/0000-0001-9842-9718>, the ORCID identifier for Stian, as he ran the workflow and gathered (most of) the files, and `license` of the dataset (the whole folder) can be different from the license of the workflow. If need be `license`, `author` etc. can be different on the `ro-crate-metadata.json` entity if someone else made this JSON.
 
-The `hasPart` lists the content of the RO-Crate, currently just the BCO JSON file. We'll describe it as a [data entity](https://stain.github.io/ro-crate/1.1-DRAFT/data-entities.html) and indicate that it is following the IEEE 2791 schemas using `conformsTo` and adding to the `@graph` array:
+The `hasPart` lists the content of the RO-Crate, currently just the BCO JSON file. We'll describe it as a [data entity](https://www.researchobject.org/ro-crate/1.1/data-entities.html) and indicate that it is following the IEEE 2791 schemas using `conformsTo` and adding to the `@graph` array:
 
 ```json
 {

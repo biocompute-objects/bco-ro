@@ -106,7 +106,7 @@ $ find data -type f | wc -l
 372
 ```
 
-Note the use of `--apparent-size` as in this case actual disk-usage is 129M due to ZFS compression. It is NOT RECOMMENDED to include `Payload-Oxum` if the directory
+Note the use of `--apparent-size` as in this case actual disk-usage is 129M due to ZFS compression, while the sum of each's file's size is 396 MB. It is NOT RECOMMENDED to include `Payload-Oxum` if `data` contains hard or soft linked outputs, as is the case of this example's Nextflow workflow.
 
 The `Bagging-Date` should reflect the time the bag was created in ISO8601 format, for instance as output `date --utc --iso-8601=seconds`
 
@@ -131,3 +131,4 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
 ```
 
 However, as metadata would primarily be covered by the [bco](data/chipseq_20200910.json) and [RO-Crate](data/ro-crate-metadata.json) we recommend keeping `bag-info.txt` minimal reflecting transfer-level metadata. 
+

@@ -107,7 +107,7 @@ This form uses a `file:///` path which is valid and provides provenance of where
 {"uri": "file:///home/stain/src/bco-ro-example-chipseq/data/results/genome/genes.bed"},
 ```
 
-This form uses [ARCP URIs inside the RO-Crate](https://www.researchobject.org/ro-crate/1.1-DRAFT/appendix/relative-uris.html#establishing-a-base-uri-inside-a-zip-file) based on the uuid in `bag-info.txt`, but is not valid because `,` wrongly is not permitted in the `uri` JSON Schema format for `authority` (it expects a hostname).
+This form uses [ARCP URIs inside the RO-Crate](https://www.researchobject.org/ro-crate/1.1/appendix/relative-uris.html#establishing-a-base-uri-inside-a-zip-file) based on the uuid in `bag-info.txt`, but is not valid because `,` wrongly is not permitted in the `uri` JSON Schema format for `authority` (it expects a hostname).
 
 ```json
 {"uri": "arcp://uuid,9b309ebd-6dfb-4c6d-983b-56b91fca6e06home/data/results/genome/genome.fa.include_regions.bed"},
