@@ -9,8 +9,7 @@ title: Packaging BioCompute Objects using RO-Crate
 {% endif %}
 
 ```warning
-This tutorial is **work in progress** and a living document. Please help [edit](https://github.com/biocompute-objects/bco-ro-crate/tree/main/docs) its content or
-[suggest changes](https://github.com/biocompute-objects/bco-ro-crate/issues) using GitHub.
+This tutorial is **work in progress** and a living document. Please help [edit](https://github.com/biocompute-objects/bco-ro-crate/tree/main/docs) its content or [suggest changes](https://github.com/biocompute-objects/bco-ro-crate/issues) using GitHub.
 ```
 
 * **Author**: Stian Soiland-Reyes <https://orcid.org/0000-0001-9842-9718>
