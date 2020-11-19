@@ -46,7 +46,7 @@ The bread and butter of most RO-Crates are _files_ and _directories_, collective
         { "@id": "nextflow.log" }
 ```
 
-These can then be explained just like `chipseq_20200910.json` using additional [data entities](https://www.researchobject.org/ro-crate/1.1/data-entities.html#referencing-files-and-folders-from-the-root-data-entity) which we'll add to `@graph` - for the file [nextflow.log]():
+These can then be explained just like `chipseq_20200910.json` using additional [data entities](https://www.researchobject.org/ro-crate/1.1/data-entities.html#referencing-files-and-folders-from-the-root-data-entity) which we'll add to `@graph` - for the file [nextflow.log](https://github.com/biocompute-objects/bco-ro-example-chipseq/blob/main/data/nextflow.log):
 
 ```json
     {
@@ -54,10 +54,10 @@ These can then be explained just like `chipseq_20200910.json` using additional [
       "@type": "File",
       "dateModified": "2020-09-10T13:10:50.246Z",
       "name": "nextflow log",
-    }
+    },
 ```
 
-As the folder [results/](https://github.com/biocompute-objects/bco-ro-example-chipseq/blob/main/data/results) is a directory with content per step, we'll detail each of the subfolders further:
+As the folder [results/](https://github.com/biocompute-objects/bco-ro-example-chipseq/blob/main/data/results) is a directory with content per step, we'll detail each of the subfolders further by adding to `@graph`:
 
 ```json
     {
@@ -98,10 +98,72 @@ As the folder [results/](https://github.com/biocompute-objects/bco-ro-example-ch
           "@id": "results/trim_galore/"
         }
       ]
+    },
+```
+
+This is one example of how RO-Crate allows more granular metadata where necessary. For instance we can have a separate `license` for a specific folder to reflect its upstream license. Following [PAV convention](http://pav-ontology.github.io/pav/) we here choose to distinguish between the `author` who formed the dataset (Stian the person), and the `creator` who generated it the (Nextflow the workflow engine). 
+
+
+## Contextual entities
+
+These three identifiers are what RO-Crate call [contextual entities](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html) - they don't have a corresponding file or folder in the `data/` folder, and they are not formally in the `hasPart` list of the Dataset. Yet they help explain the other entities, and in RO-Crate they are themselves explained the same way, adding to `@graph` but with different `@type`s:
+
+### Person
+
+A [Person](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#people) typically appears as a `author`, `creator` or `contributor` of other entities. Just like in BCO the preferred identifier is a [ORCID uri](https://orcid.org/) to give unique identifier.
+
+```json
+{
+  "@id": "https://orcid.org/0000-0001-9842-9718",
+  "@type": "Person",
+  "name": "Stian Soiland-Reyes"
+},
+```
+
+### Software
+
+[Software](https://www.researchobject.org/ro-crate/1.1/provenance.html#software-used-to-create-files) used to create artifacts can be represented.
+
+```
+    {
+      "@id": "#db65dfb7-4867-400e-a12f-a1652d46a333"
+      "@type": "SoftwareApplication",
+      "name": "Nextflow 19.10.0",
+      "url": "https://www.nextflow.io/"
+      },
+    },
+```
+
+In this example, for `@id` we use a local (`#`) identifier adding a randomly generated [universally unique identifier (UUID) ](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+
+```info
+Rather than use `creator` with software agents, [RO-Crate provenance](https://www.researchobject.org/ro-crate/1.1/provenance.html#software-used-to-create-files) using `CreateAction` can be much more descriptive about software interactions, however at the cost of verbosity.
+```
+
+## License
+
+[Licensing](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#licensing-access-control-and-copyright) can in RO-Crate be assigned to any data entity, allowing an RO-Crate to have a mix of licenses for different files, compared to BCO which can only provide an overall license.
+
+Each `license` identifier can thus be expanded. In this case <https://github.com/nf-core/chipseq/blob/1.2.1/LICENSE> is the specific instance of the MIT license with _(c) copyright_ inserted. To classify it as MIT license, ideally [SPDX identifiers]() should be used (see also [schemaorg/suggestions-questions-brainstorming#251](https://github.com/schemaorg/suggestions-questions-brainstorming/issues/251).
+
+```json
+    {
+      "@id": "https://github.com/nf-core/chipseq/blob/1.2.1/LICENSE",
+      "@type": "CreativeWork",
+      "name": "MIT License",
+      "identifier": "https://spdx.org/licenses/MIT"
     }
 ```
 
-This is one example of how RO-Crate allows more granular metadata where necessary. For instance we can have a separate `license` for a specific folder to reflect its upstream license. 
+```tip
+As a recommendation the BCO license should match the `./` license and be permissive enough that it does not violate any more specific licenses of referenced data files.
+```
 
-We here choose to distinguish between the `author` who formed the dataset (Stian the person), and the `creator` who generated it the (Nextflow the workflow engine).
+### Other contextual entities
 
+Following [RO-Crate documentation](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html) other contextual entities can be added and related to the `@graph`, for instance [publisher](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#publisher), [subjects and keywords](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#subjects--keywords), [thumbnails](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#thumbnails).
+
+
+## Workflow entity
+
+_TODO_: <https://www.researchobject.org/ro-crate/1.1/workflows.html>
