@@ -136,7 +136,7 @@ A [Person](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#
 
 In this example, for `@id` we use a local (`#`) identifier adding a randomly generated [universally unique identifier (UUID) ](https://en.wikipedia.org/wiki/Universally_unique_identifier).
 
-```info
+```note
 Rather than use `creator` with software agents, [RO-Crate provenance](https://www.researchobject.org/ro-crate/1.1/provenance.html#software-used-to-create-files) using `CreateAction` can be much more descriptive about software interactions, however at the cost of verbosity.
 ```
 
