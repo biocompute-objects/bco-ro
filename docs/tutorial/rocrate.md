@@ -124,7 +124,7 @@ A [Person](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#
 
 [Software](https://www.researchobject.org/ro-crate/1.1/provenance.html#software-used-to-create-files) used to create artifacts can be represented.
 
-```
+```json
     {
       "@id": "#db65dfb7-4867-400e-a12f-a1652d46a333"
       "@type": "SoftwareApplication",
