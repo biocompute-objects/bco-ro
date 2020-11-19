@@ -57,19 +57,24 @@ These can then be explained just like `chipseq_20200910.json` using additional [
     }
 ```
 
-While the folder [results/]() is a directory with content per step, so we'll detail each of the subfolders further:
+As the folder [results/](https://github.com/biocompute-objects/bco-ro-example-chipseq/blob/main/data/results) is a directory with content per step, we'll detail each of the subfolders further:
 
 ```json
     {
       "@type": "Dataset",
+      "@id": "results/",
+      "name": "results",
+      "description": "Nextflow outputs from examplar run of nf-core/chipseq pipeline workflow.",
+      "dateModified": "2020-09-10T13:20:49.143Z",
+      "license": {
+        "@id": "https://github.com/nf-core/test-datasets/blob/atacseq/LICENSE"
+      },
       "author": {
         "@id": "https://orcid.org/0000-0001-9842-9718"
       },
       "creator": {
         "@id": "#db65dfb7-4867-400e-a12f-a1652d46a333"
       },
-      "dateModified": "2020-09-10T13:20:49.143Z",
-      "description": "Nextflow outputs from examplar run of nf-core/ pipeline workflow.",
       "hasPart": [
         {
           "@id": "results/bwa/"
@@ -92,20 +97,11 @@ While the folder [results/]() is a directory with content per step, so we'll det
         {
           "@id": "results/trim_galore/"
         }
-      ],
-      "license": {
-        "@id": "https://github.com/nf-core/test-datasets/blob/atacseq/LICENSE"
-      },
-      "name": "results",
-      "@reverse": {
-        "hasPart": [
-          {
-            "@id": "./"
-          }
-        ]
-      },
-      "@id": "results/"
-    },
-    ```
+      ]
+    }
+```
 
-**TODO**: Simplify above
+This is one example of how RO-Crate allows more granular metadata where necessary. For instance we can have a separate `license` for a specific folder to reflect its upstream license. 
+
+We here choose to distinguish between the `author` who formed the dataset (Stian the person), and the `creator` who generated it the (Nextflow the workflow engine).
+
