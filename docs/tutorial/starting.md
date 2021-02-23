@@ -98,7 +98,7 @@ We can from this checksum generate and insert the `etag` field for the BCO:
 ```
 
 ```note
-The above etag calculation can be considered "weak", e.g. it would give a different checksum also for non-structural changes like moving key-value lines around, while ignoring some structural changes like `"lots of space.txt"` to `"lotsofspace.txt"`. [RFC7232](https://tools.ietf.org/html/rfc7232#section-2.3) says such Etag weakness should be indicated with a `W/` prefix, however that is currently [not formally permitted](https://opensource.ieee.org/2791-object/ieee-2791-schema/-/merge_requests/1) in the schema for the BCO `etag` field.
+The above etag calculation can be considered "weak", e.g. it would give a different checksum also for non-structural changes like moving key-value lines around, while ignoring some structural changes like `"lots of space.txt"` to `"lotsofspace.txt"`. [RFC7232](https://tools.ietf.org/html/rfc7232#section-2.3) says such Etag weakness should be indicated with a `W/` prefix, however that is [not currently permitted](https://opensource.ieee.org/2791-object/ieee-2791-schema/-/merge_requests/1) in the JSON Schema for the BCO `etag` field.
 ```
 
 We'll need to update the `etag` whenever we substantially change the BCO JSON - so we'll do this again towards the end of this tutorial. Notice how the above `egrep` command-line ignores the `"etag"` line to avoid circularly calculating a new checksum.
