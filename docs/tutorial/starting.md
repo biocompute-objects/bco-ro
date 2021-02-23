@@ -86,7 +86,9 @@ To calculate the `etag` value we need some kind of checksum of the BCO's JSON.
 Below is a poor man's "weak" attempt of a JSON checksum by ignoring any lines containing `etag`, `object_id`, and `spec_version` when calculating a new etag, as well as ignoring any whitespace changes:
 
 ```sh
-$ egrep -v '"(etag|object_id|spec_version)"' chipseq_20200924.json  | sed -e ':x /$/ { N; s/\n//g ; bx ; }' | sed 's/\s*//g' | sha256sum
+$ egrep -v '"(etag|object_id|spec_version)"' chipseq_20200924.json  | 
+  sed -e ':x /$/ { N; s/\n//g ; bx ; }' | 
+  sed 's/\s*//g' | sha256sum
 cfb77c3e5c9b0e937de215190106dadcc9af9f40fa19a4deacf9a5a3a42f5de6  -
 
 We can from this checksum generate and insert the `etag` field for the BCO:
