@@ -95,7 +95,7 @@ We can from this checksum generate and insert the `etag` field for the BCO:
 "etag": "cfb77c3e5c9b0e937de215190106dadcc9af9f40fa19a4deacf9a5a3a42f5de6"
 ```
 
-```info
+```note
 The above etag calculation can be considered "weak", e.g. it would give a different checksum also for non-structural changes like moving key-value lines around, while ignoring some structural changes like `"lots of space.txt"` to `"lotsofspace.txt"`. [RFC7232](https://tools.ietf.org/html/rfc7232#section-2.3) says such Etag weakness should be indicated with a `W/` prefix, however that is currently [not formally permitted](https://opensource.ieee.org/2791-object/ieee-2791-schema/-/merge_requests/1) in the schema for the BCO `etag` field.
 ```
 
