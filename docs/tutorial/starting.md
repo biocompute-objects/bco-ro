@@ -77,19 +77,34 @@ While the above is valid according to the [IEEE 2791 schemas](https://w3id.org/i
 
 ### ETag
 
-To set the `etag` we need some kind of checksum of the JSON. 
+From [IEEE 2791-2020](https://doi.org/10.1109/IEEESTD.2020.9094416):
 
-Below is a poor man's attempt of a JSON checksum that ignores "etag" when calculating a new etag, as well as whitespace:
+> Everything except for the `etag`, `object_id`, and `spec_version` shall be included in the generation of an [ETag](https://tools.ietf.org/html/rfc7232#section-2.3) - which can be ["strong" or "weak"](https://tools.ietf.org/html/rfc7232#section-2.1). It is recommended that the ETag be deleted or updated if the object file is changed (except in cases using weak ETags in which the entirety of the change comprises a simple re-writing of the JSON).
+
+To calculate the `etag` value we need some kind of checksum of the BCO's JSON. 
+
+Below is a poor man's "weak" attempt of a JSON checksum by ignoring any lines containing `etag`, `object_id`, and `spec_version` when calculating a new etag, as well as ignoring any whitespace changes:
 
 ```sh
-$ grep -v '"etag"' chipseq_20200924.json  | sed -e ':x /$/ { N; s/\n//g ; bx ; }' | sed 's/\s*//g' | sha256sum
+$ egrep -v '"(etag|object_id|spec_version)"' chipseq_20200924.json  | sed -e ':x /$/ { N; s/\n//g ; bx ; }' | sed 's/\s*//g' | sha256sum
 cfb77c3e5c9b0e937de215190106dadcc9af9f40fa19a4deacf9a5a3a42f5de6  -
+
+We can from this checksum generate and insert the `etag` field for the BCO:
 
 ```json
 "etag": "cfb77c3e5c9b0e937de215190106dadcc9af9f40fa19a4deacf9a5a3a42f5de6"
 ```
 
-We'll need to update the `etag` whenever we substantially change the BCO - so we'll do this again towards the end of this tutorial.
+```info
+The above etag calculation can be considered "weak", e.g. it would give a different checksum also for non-structural changes like moving key-value lines around, while ignoring some structural changes like `"lots of space.txt"` to `"lotsofspace.txt"`. [RFC7232](https://tools.ietf.org/html/rfc7232#section-2.3) says such Etag weakness should be indicated with a `W/` prefix, however that is currently [not formally permitted](https://opensource.ieee.org/2791-object/ieee-2791-schema/-/merge_requests/1) in the schema for the BCO `etag` field.
+```
+
+We'll need to update the `etag` whenever we substantially change the BCO JSON - so we'll do this again towards the end of this tutorial. Notice how the above `egrep` command-line ignores the `"etag"` line to avoid circularly calculating a new checksum.
+
+
+```tip
+Performing a "strong" `etag` calculation would need to be done at tree level by parsing the BCO JSON, e.g. ignoring order of fields within an object. A strong calculation may also want to assign new `etag` values if any of files referenced from the BCO have changed.
+```
 
 ### Provenance domain
 
