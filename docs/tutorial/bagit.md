@@ -1,6 +1,6 @@
 ---
 title: BagIt manifest
-sort: 10
+sort: 6
 ---
 
 # BagIt
