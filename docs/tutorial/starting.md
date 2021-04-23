@@ -114,7 +114,7 @@ The `provenance_domain` describe this BCO overall. Because in this case we are p
 
 Luckily nf-core has provided [citation info](https://nf-co.re/chipseq#citation) where we can find the authors ([`authoredBy`](http://purl.org/pav/html#http://purl.org/pav/authoredBy)) of the workflow from <https://doi.org/10.5281/zenodo.3240506>.  
 
-We add a `name` with the title from the `nf-core/chipseq` website, as well as their indicated [latest release](https://nf-co.re/chipseq/releases) - at time of writing `"version": "1.2.1"`.  If your workflow does not currently have a version number, consider using [Semantic Versioning](https://semver.org/spec/v2.0.0.html) as recommended by IEEE 2791.
+We add a `name` with the title from the `nf-core/chipseq` website, as well as their indicated [latest release](https://nf-co.re/chipseq/releases) - at time of writing `"version": "1.2.2`.  If your workflow does not currently have a version number, consider using [Semantic Versioning](https://semver.org/spec/v2.0.0.html) as recommended by IEEE 2791.
 
 Here `created` reflects the original release date the workflow (which did not include a BCO), we'll set `modified` to current date to reflect when we last updated the BCO JSON (and presumably also changed its `etag`). 
 
@@ -124,15 +124,15 @@ In many cases your workflow will be considered "released" at the same time as th
 ```json
 "provenance_domain": {
     "name": "nf-core/chipseq: ChIP-seq peak-calling, QC and differential analysis pipeline",
-    "version": "1.2.1",
-    "created": "2020-07-29T17:33:46+01:00",
-    "modified": "2020-09-10T13:11:58+01:00",
+    "version": "1.2.2",
+    "created": "2020-07-29T17:33:46+01:00A",
+    "modified": "2021-04-23T00:27:42.542985Z",
     "contributors": [
         {"contribution": ["authoredBy"], "name": "Harshil Patel" },
         {"contribution": ["authoredBy"], "name": "Chuan Wang" },
         {"contribution": ["authoredBy"], "name": "Phil Ewels" },
-        {"contribution": ["authoredBy"], "name": "Alexander Peltzer" },
         {"contribution": ["authoredBy"], "name": "Tiago Chedraoui Silva" },
+        {"contribution": ["authoredBy"], "name": "Alexander Peltzer" },
         {"contribution": ["authoredBy"], "name": "Drew Behrens" },
         {"contribution": ["authoredBy"], "name": "Maxime Garcia" },
         {"contribution": ["authoredBy"], "name": "mashehu" },
@@ -140,7 +140,7 @@ In many cases your workflow will be considered "released" at the same time as th
         {"contribution": ["authoredBy"], "name": "Sofia Haglund" },
         {"contribution": ["authoredBy"], "name": "Winni Kretzschmar" },
     ],
-    "license": "https://github.com/nf-core/chipseq/blob/1.2.1/LICENSE"
+    "license": "https://github.com/nf-core/chipseq/blob/1.2.2/LICENSE"
 },
 ```
 

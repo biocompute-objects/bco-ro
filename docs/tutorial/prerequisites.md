@@ -8,7 +8,10 @@ sort: 1
 
 This tutorial is based on [Ubuntu 20.04 TLS](https://releases.ubuntu.com/20.04/), but should work on any modern Linux distribution. Instructions may need to be adapted for macOS and Windows, but note this workflow has only been tested on Linux. 
 
-Below we'll use [Conda](https://conda.io/) which can be installed for all major operating systems and will assist in smoothing out their differences as it provides an independent and versioned distribution of a wide range of bioinformatics tools through [BioConda](https://bioconda.github.io/). Conda is also used by Nextflow to install its workflow dependencies.
+If running in a virtual machine you are recommended to allocate **8 GB RAM** to complete all workflow steps.
+
+Below we'll use [Conda](https://conda.io/), which can be installed for all major operating systems and will assist in smoothing out their differences. Conda provides an independent and versioned distribution of a wide range of bioinformatics tools through [BioConda](https://bioconda.github.io/). Conda can also be used internally by Nextflow to install its workflow dependencies, but first we'll use Conda to install the Nextflow workflow engine itself.
+
 
 ### Install Conda
 
@@ -26,11 +29,11 @@ Follow the instructions in the installer.
 ### Activate Conda environment
 
 Next we'll activate a
-[Conda environment](environment.yml) that installs Nextflow,
+[Conda environment](https://github.com/biocompute-objects/bco-ro-example-chipseq/blob/main/environment.yml) that installs Nextflow,
 Java and UNIX tools needed for this tutorial:
 
 ```sh
-$ conda env create -f https://raw.githubusercontent.com/stain/bco-ro-example-chipseq/master/environment.yml
+$ conda env create -f https://raw.githubusercontent.com/biocompute-objects/bco-ro-example-chipseq/main/environment.yml
 
 Downloading and Extracting Packages
 curl-7.71.1          | 139 KB    | ##################################################################################################################### | 100% 

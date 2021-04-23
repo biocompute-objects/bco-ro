@@ -21,30 +21,29 @@ allows running of [nf-core](https://nf-co.re) workflows directly by their GitHub
 ### Recording
 
 We'll use the `test` profile that runs with preconfigured test data, for using your own inputs
-see the [workflow usage](https://nf-co.re/chipseq/1.2.1/docs/usage) instructions.
+see the [workflow usage](https://nf-co.re/chipseq/1.2.2/docs/usage) instructions.
 
-Because our BCO should be reproducible we need to be concious about which version of the workflow
-we are using. At time of writing the latest version is `1.2.1`.
+Because our BCO should be reproducible we need to be concious about which *version of the workflow*
+we are using. At time of writing the latest version is `1.2.2`. 
 
 If you are using Docker/Singularity containers instead of Conda, 
 change the below `-profile test,conda` to 
 `-profile test,docker` or `-profile test,singularity` accordingly.
 
-
 ```sh
-$ nextflow run nf-core/chipseq -revision 1.2.1 -profile test,conda
+$ nextflow run nf-core/chipseq -revision 1.2.2 -profile test,conda
 
 N E X T F L O W  ~  version 20.07.1
-Launching `nf-core/chipseq` [small_legentil] - revision: 0f487ed76d [1.2.1]
+Launching `nf-core/chipseq` [backstabbing_hawking] - revision: 6924b66942 [1.2.2]
 ----------------------------------------------------
                                         ,--./,-.
         ___     __   __   __   ___     /,-._.--~'
   |\ | |__  __ /  ` /  \ |__) |__         }  {
   | \| |       \__, \__/ |  \ |___     \`-._,-`-,
                                         `._,._,'
-  nf-core/chipseq v1.2.1
+  nf-core/chipseq v1.2.2
 ----------------------------------------------------
-Run Name            : small_legentil
+Run Name            : backstabbing_hawking
 Data Type           : Paired-End
 Design File         : https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv
 Genome              : Not supplied
@@ -72,6 +71,7 @@ We notice already nf-core reporting inputs of reference datasets. We'll record t
           {"name": "iGenomes R64-1-1 Ensembl (GTF Genes)",
            "url": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf"
           }
+    }
 }
 ```
 
