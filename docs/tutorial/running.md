@@ -56,24 +56,28 @@ Min Consensus Reps  : 1
 
 The workflow will take a while to run. If you previously skipped ahead, now go back to create the [skeleton BCO](#skeleton-bco)
 
-We notice already nf-core reporting inputs of reference datasets. We'll record these in the BCO as part of the `execution_domain`:
+Some workflow system require explicit inputs, while others have them declared as part of the workflow or the workflow config. Nextflow have both options, in this case we used the its [`test` profile](https://github.com/nf-core/chipseq/blob/1.2.2/conf/test.config) to pick the minimal test inputs suitable for testing.
+
+We notice already nf-core reporting inputs of reference datasets, [as declared in the profile](https://github.com/nf-core/chipseq/blob/1.2.2/conf/test.config#L19). Rather than record the `test` parameter as the workflow input, we'll record the URLs of these file inputs in the BCO as part of the `io_domain`:
 
 ```json
-{"execution_domain": {
-
-        "external_data_endpoints": [
-          {"name": "Experiment design file for minimal test dataset",
-           "url": "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv"
+{"io_domain": {
+   "input_subdomain": [
+          {
+            "url": "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/design.csv"
           },
-          {"name": "iGenomes R64-1-1 Ensembl (Fasta sequence)",
-           "url": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa"
+          {
+            "url": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genome.fa"
           },
-          {"name": "iGenomes R64-1-1 Ensembl (GTF Genes)",
-           "url": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf"
+          {
+            "url": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/reference/genes.gtf"
           }
-    }
+        ]
+    },
+    "…": []
 }
 ```
+
 
 As the workflow progresses, Nextflow reports status per process:
 
@@ -129,39 +133,44 @@ The BCO should list the individual steps executed in the workflow, ideally with 
 
 As a first step towards representing the workflow steps in BCO we list the `name` corresponding directly to the report above. 
 
-        "pipeline_steps": [
-            {"step_number": 1, "name": "CHECK_DESIGN", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 2, "name": "output_documentation", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 3, "name": "MAKE_GENE_BED", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 5, "name": "get_software_versions", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 6, "name": "BWA_INDEX", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 7, "name": "MAKE_GENOME_FILTER", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 8, "name": "FASTQC", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 9, "name": "TRIMGALORE", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 10, "name": "BWA_MEM", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 11, "name": "SORT_BAM", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 12, "name": "MERGED_BAM", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 13, "name": "PRESEQ", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 14, "name": "MERGED_BAM_FILTER", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 15, "name": "MERGED_BAM_REMOVE_ORPHAN", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 16, "name": "PHANTOMPEAKQUALTOOLS", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 17, "name": "BIGWIG", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 18, "name": "PICARD_METRICS", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 19, "name": "PLOTFINGERPRINT", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 20, "name": "MACS2", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 21, "name": "PLOTPROFILE", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 22, "name": "MACS2_ANNOTATE", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 23, "name": "CONSENSUS_PEAKS", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 24, "name": "CONSENSUS_PEAKS_COUNTS", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 25, "name": "CONSENSUS_PEAKS_ANNOTATE", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 26, "name": "MACS2_QC", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 27, "name": "CONSENSUS_PEAKS_DESEQ2", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 28, "name": "MULTIQC", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 29, "name": "IGV", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 30, "name": "but", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 31, "name": "errored", "description": "", "input_list": [], "output_list": []},
-            {"step_number": 32, "name": "ran", "description": "", "input_list": [], "output_list": []}
-        ]
+```json
+"description_domain": {
+    "…": [],
+    "pipeline_steps": [
+        {"step_number": 1, "name": "CHECK_DESIGN", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 2, "name": "output_documentation", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 3, "name": "MAKE_GENE_BED", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 5, "name": "get_software_versions", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 6, "name": "BWA_INDEX", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 7, "name": "MAKE_GENOME_FILTER", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 8, "name": "FASTQC", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 9, "name": "TRIMGALORE", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 10, "name": "BWA_MEM", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 11, "name": "SORT_BAM", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 12, "name": "MERGED_BAM", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 13, "name": "PRESEQ", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 14, "name": "MERGED_BAM_FILTER", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 15, "name": "MERGED_BAM_REMOVE_ORPHAN", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 16, "name": "PHANTOMPEAKQUALTOOLS", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 17, "name": "BIGWIG", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 18, "name": "PICARD_METRICS", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 19, "name": "PLOTFINGERPRINT", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 20, "name": "MACS2", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 21, "name": "PLOTPROFILE", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 22, "name": "MACS2_ANNOTATE", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 23, "name": "CONSENSUS_PEAKS", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 24, "name": "CONSENSUS_PEAKS_COUNTS", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 25, "name": "CONSENSUS_PEAKS_ANNOTATE", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 26, "name": "MACS2_QC", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 27, "name": "CONSENSUS_PEAKS_DESEQ2", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 28, "name": "MULTIQC", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 29, "name": "IGV", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 30, "name": "but", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 31, "name": "errored", "description": "", "input_list": [], "output_list": []},
+        {"step_number": 32, "name": "ran", "description": "", "input_list": [], "output_list": []}
+    ]
+}
+```
 
 ```tip
 Note the _partial order_ implied by `step_number`, here deliberately not listing any step `4`. You may have noticed during execution that multiple Nextflow steps executed concurrently, as they did not depend on each other. In BCO such parallelism can be more clearly indicated by setting the same number for `step_number`, e.g. if `FASTQC` ran at the same time as `TRIMGALORE` they can both have `"step_number": 8`: 
@@ -224,31 +233,32 @@ The `CHECK_DESIGN` step has conveniently produced for us a [data/results/pipelin
 
     {"step_number": 8, "name": "FASTQC", "description": "FastQC gives general quality…", 
     "input_list": [
-      "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R1.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204810_Spt5-ChIP_Input2_SacCer_ChIP-Seq_ss100k_R1.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822153_1.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822154_1.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822157_1.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822158_1.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R2.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204810_Spt5-ChIP_Input2_SacCer_ChIP-Seq_ss100k_R2.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822153_2.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822154_2.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822157_2.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822158_2.fastq.gz"
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R1.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204810_Spt5-ChIP_Input2_SacCer_ChIP-Seq_ss100k_R1.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822153_1.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822154_1.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822157_1.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822158_1.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R2.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204810_Spt5-ChIP_Input2_SacCer_ChIP-Seq_ss100k_R2.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822153_2.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822154_2.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822157_2.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/atacseq/testdata/SRR1822158_2.fastq.gz}"
     ], 
     "output_list": []},
 
 Note that in this simplified approach of a single `FASTQC` step, with a flat list, we can no longer single out the individual pair-end reads. In the more verbose approach of using one `FASTQC` step for each row in [execution_trace.txt](https://github.com/biocompute-objects/bco-ro-example-chipseq/blob/main/data/results/pipeline_info/execution_trace.txt), we can be slightly more precise by only showing the reads for the given sample `SPT5_INPUT_R1_T1`:
 
-    {"step_number": 8, "name": "FASTQC (SPT5_INPUT_R1_T1)", "description": "FastQC gives general quality…", 
+    {"step_number": 8, "name": "FASTQC", "description": "Input (SPT5_INPUT_R1_T1) FastQC gives general quality…", 
     "input_list": [
-      "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R1.fastq.gz",
-      "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R2.fastq.gz",
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R1.fastq.gz"},
+      {"uri": "https://raw.githubusercontent.com/nf-core/test-datasets/chipseq/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R2.fastq.gz"},
     ], 
-    "output_list": []},
+    "output_list": []}
 
-This is still a simplification because in reality [this particular workflow step](https://github.com/nf-core/chipseq/blob/1.2.2/main.nf#L487) actually still executed `fastqc` separately for each file.
+
+This is still a simplification because in reality [this particular workflow step](https://github.com/nf-core/chipseq/blob/1.2.2/main.nf#L487) actually  executed `fastqc` separately for each file.
 
 ```
 (bco-ro) root@05ce36630c51:/work/be/fc6003d5258941857baea391194fde# cat .command.sh 
@@ -263,7 +273,7 @@ Similarly note that in BCO we only provide input references as a _flat list_, we
 
     trim_galore --cores 1 --paired --fastqc --gzip      SPT5_INPUT_R1_T1_1.fastq.gz SPT5_INPUT_R1_T1_2.fastq.gz  
 
-There are many reasons for not going into that level of detail, for instance in this NF-Core workflow each step also have pre- and post- steps that handle temporary file, record memory usage, capture the error log, etc. These details are usually not essential for explaining the computational analysis, and therefore do not need to be represented at BCO level.
+There are many reasons for not going into that level of detail here, for instance in this NF-Core workflow each step also have pre- and post- steps that handle temporary file, record memory usage, capture the error log, etc. These details are usually not essential for explaining the computational analysis, and therefore do not need to be represented at BCO level. 
 
 #### Step outputs
 
@@ -279,14 +289,22 @@ Now let's go ahead and describe the `output_list` of the files this step produce
 ]
 ```
 
-Note in this case we are referring to output files _contained by this RO-Crate_, they do not (yet) have any absolute URL, therefore we refer to them as _relative URI paths_ from the _RO-Crate Root_, the [`data/` folder](https://github.com/biocompute-objects/bco-ro-example-chipseq/tree/main/data/).
+Note in this case we are referring to output files _contained by this RO-Crate_, they do not (yet) have any absolute URL, therefore we for now refer to them as _relative URI paths_ from the _RO-Crate Root_, the [`data/` folder](https://github.com/biocompute-objects/bco-ro-example-chipseq/tree/main/data/).
 
 Some workflow systems produce workflow outputs directly web adressable, in which case you may elect to identify them by URL reference, instead of including them as part of the RO-Crate payload. However this means the BCO is more _fragile_, it refers to things on the web which may change or disappear.
 
 
-### Identifying input/output files
+### Identifying input/output files as URLs
 
-As we saw above, the  `input_list` and `output_list` identify the workflow step's input and output files using URIs. 
+As we saw above, the  `input_list` and `output_list` identify the workflow step's input and output files using URIs. For files contained in the RO-Crate we initially used a _relative URI path_ like in:
+
+
+We include the relative path under `filename`. It would not be valid to use that path as `uri`; 
+the form below uses relative path, which currently is not valid according to the IEEE 2791 JSON Schema:
+
+```json
+{"uri": "data/results/genome/genes.bed"},
+```
 
 One way to make a more lightweight BCO without all files bundled in, is to publish the workflow outputs on a hosting service. 
 
@@ -303,12 +321,6 @@ The below form is valid, and use a HTTP _raw_ URI at GitHub. Note that the use o
 ]},
 ```
 
-We include the relative path under `filename`. It would not be valid to use that path as `uri`; 
-the form below uses relative path, which currently is not valid according to the IEEE 2791 JSON Schema:
-
-```json
-{"uri": "data/results/genome/genes.bed"},
-```
 
 This form uses a `file:///` path which is valid and provides provenance of where the file was made locally, is not portable to other machines:
 
