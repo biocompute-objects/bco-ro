@@ -18,7 +18,7 @@ Here we use a name `chipseq_20200924` as we ran the workflow `chipseq` on 2020-0
 
 The `data/` folder will contain our [RO-Crate](https://w3id.org/ro/crate/1.1) according to its [recommendation for combining with BagIt](https://www.researchobject.org/ro-crate/1.1/appendix/implementation_notes.html#combining-with-other-packaging-schemes).  If you will not be using BagIt you can skip the `data/` subfolder.
 
-Note that running the workflow can take a while, so this might be a good point to [skip ahead](running.html) and start the Nextflow run in a separate window.
+Note that running the workflow can take a while, so this might be a good point to [skip ahead](running.md) and start the Nextflow run in a separate window.
  
 ### Skeleton BCO 
 
@@ -125,7 +125,7 @@ In many cases your workflow will be considered "released" at the same time as th
 "provenance_domain": {
     "name": "nf-core/chipseq: ChIP-seq peak-calling, QC and differential analysis pipeline",
     "version": "1.2.2",
-    "created": "2020-07-29T17:33:46+01:00A",
+    "created": "2019-06-06T15:15:00.676813+00:00Z",
     "modified": "2021-04-23T00:27:42.542985Z",
     "contributors": [
         {"contribution": ["authoredBy"], "name": "Harshil Patel" },
