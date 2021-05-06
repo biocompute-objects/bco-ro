@@ -25,9 +25,7 @@ In this tutorial we show how a RO-Crate is created around a single BCO and its r
 ```
 
 ```note
-Our `ro-crate-metadata.json` JSON file will use `@id` identifiers uwith relative paths 
-based within `data/`. This folder is also self-described as the
-[root data entity](https://www.researchobject.org/ro-crate/1.1/root-data-entity.html) `./`
+Our `ro-crate-metadata.json` JSON file will use `@id` identifiers with relative paths based within `data/`. This folder is also self-described as the [root data entity](https://www.researchobject.org/ro-crate/1.1/root-data-entity.html) `./`
 which we created in the [skeleton RO-Crate](starting.md#skeleton-ro-crate).
 ```
 

@@ -16,7 +16,7 @@ mkdir data
 
 Here we use a name `chipseq_20200924` as we ran the workflow `chipseq` on 2020-09-24 - you can use any reasonable name.
 
-The `data/` folder will contain our [RO-Crate](https://w3id.org/ro/crate/1.1) according to its [recommendation for combining with BagIt](https://www.researchobject.org/ro-crate/1.1/appendix/implementation_notes.html#combining-with-other-packaging-schemes).  If you will not be using BagIt you can skip the `data/` subfolder.
+The `data/` folder will contain our [RO-Crate](https://w3id.org/ro/crate/1.1) according to its [recommendation for combining with BagIt](https://www.researchobject.org/ro-crate/1.1/appendix/implementation-notes.html#combining-with-other-packaging-schemes).  If you will not be using BagIt you can skip the `data/` subfolder.
 
 Note that running the workflow can take a while, so this might be a good point to [skip ahead](running.md) and start the Nextflow run in a separate window.
  
@@ -66,10 +66,13 @@ The BCO JSON can have any name - to make its relative paths easy we'll put it in
       "output_subdomain": []     
     }
 }
+```
 
 While the above is valid according to the [IEEE 2791 schemas](https://w3id.org/ieee/ieee-2791-schema/) it has obviously not got much information yet.  
 
-**Tip:** While editing the BCO JSON, have it open as **Input JSON** in <https://www.jsonschemavalidator.net/> with the below schema:
+```tip
+While editing the BCO JSON, have it open as **Input JSON** in <https://www.jsonschemavalidator.net/> with the below schema:
+```
 
 ```json
 { "$ref": "https://w3id.org/ieee/ieee-2791-schema/2791object.json"}
@@ -114,7 +117,7 @@ The `provenance_domain` describe this BCO overall. Because in this case we are p
 
 Luckily nf-core has provided [citation info](https://nf-co.re/chipseq#citation) where we can find the authors ([`authoredBy`](http://purl.org/pav/html#http://purl.org/pav/authoredBy)) of the workflow from <https://doi.org/10.5281/zenodo.3240506>.  
 
-We add a `name` with the title from the `nf-core/chipseq` website, as well as their indicated [latest release](https://nf-co.re/chipseq/releases) - at time of writing `"version": "1.2.2`.  If your workflow does not currently have a version number, consider using [Semantic Versioning](https://semver.org/spec/v2.0.0.html) as recommended by IEEE 2791.
+We add a `name` with the title from the `nf-core/chipseq` website, as well as their indicated [latest release](https://nf-co.re/chipseq/releases_stats) - at time of writing `"version": "1.2.2`.  If your workflow does not currently have a version number, consider using [Semantic Versioning](https://semver.org/spec/v2.0.0.html) as recommended by IEEE 2791.
 
 Here `created` reflects the original release date the workflow (which did not include a BCO), we'll set `modified` to current date to reflect when we last updated the BCO JSON (and presumably also changed its `etag`). 
 
