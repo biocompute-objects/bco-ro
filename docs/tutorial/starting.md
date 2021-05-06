@@ -205,7 +205,7 @@ Similarly let's create the high-level [RO-Crate](https://w3id.org/ro/crate/1.1).
 
 This preamble  declares the version of the RO-Crate specification used, it's equivalent to BCO's `spec_version`. The remaining RO-Crate elements will be added to the `@graph` array as [data entities](https://www.researchobject.org/ro-crate/1.1/data-entities.html) (files and directories) or [contextual entities](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html) (e.g.  people, organizations)
 
-The [root of the RO-Crate](hhttps://www.researchobject.org/ro-crate/1.1/root-data-entity.html) represents the whole _dataset_, in this case our `data/` folder, but also any external references like the nf-core workflow and reference data. We're going to use the RO-Crate metadata to provide further details on resources and their origin in the world, while the BCO provides finer-grained details of the workflow execution. 
+The [root of the RO-Crate](https://www.researchobject.org/ro-crate/1.1/root-data-entity.html) represents the whole _dataset_, in this case our `data/` folder, but also any external references like the nf-core workflow and reference data. We're going to use the RO-Crate metadata to provide further details on resources and their origin in the world, while the BCO provides finer-grained details of the workflow execution. 
 
 In both cases we will mainly use relative paths within the `data/` directory, where also both metadata files reside. We notice thus that `./` for the root Dataset reflects the `data/` directory.
 
