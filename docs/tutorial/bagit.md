@@ -130,5 +130,5 @@ Internal-Sender-Description: Uncompressed greyscale TIFFs created
         from microfilm and are...
 ```
 
-However, as metadata would primarily be covered by the [bco](data/chipseq_20200910.json) and [RO-Crate](data/ro-crate-metadata.json) we recommend keeping `bag-info.txt` minimal reflecting transfer-level metadata. 
+However, as metadata would primarily be covered by the [bco](https://github.com/biocompute-objects/bco-ro-example-chipseq/blob/main/data/chipseq_20200910.json) and [RO-Crate](https://github.com/biocompute-objects/bco-ro-example-chipseq/blob/main/data/ro-crate-metadata.json) we recommend keeping `bag-info.txt` minimal reflecting transfer-level metadata. 
 
