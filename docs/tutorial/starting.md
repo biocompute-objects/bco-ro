@@ -262,7 +262,7 @@ find its (URI escaped) file path within the `data/` folder.
 
 Notice how we also declare the [encodingFormat](https://www.researchobject.org/ro-crate/1.1/data-entities.html#adding-detailed-descriptions-of-encodings) as being [JSON](https://www.json.org/) – the BCO file is following the general syntax of JSON and would be directly parsable using its libraries. However the particular keys and structure we are conforming to is according to the IEEE 2791 JSON Schema.
 
-#### Declaring the IEEE 2791 schema
+#### Declaring the IEEE 2791 schema
 
 In case someone consumes the RO-Crate without knowing about IEEE 2791 or BioCompute Objects, or to be precise about which release version of the schema was used, we'll also declare a _contextual entity_ for this JSON schema:
 
@@ -272,7 +272,7 @@ In case someone consumes the RO-Crate without knowing about IEEE 2791 or BioComp
     "@type": "CreativeWork",
     "name": "IEEE 2791 Object Schema",
     "version": "1.4",
-    "citation: "https://doi.org/10.1109/IEEESTD.2020.9094416",
+    "citation": "https://doi.org/10.1109/IEEESTD.2020.9094416",
     "subjectOf": {"@id": "https://www.biocomputeobject.org/"}
 }
 ```
