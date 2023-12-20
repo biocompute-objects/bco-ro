@@ -140,13 +140,13 @@ Rather than use `creator` with software agents, [RO-Crate provenance](https://ww
 
 ## License
 
-[Licensing](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#licensing-access-control-and-copyright) can in RO-Crate be assigned to any data entity, allowing an RO-Crate to have a mix of licenses for different files, compared to BCO which can only provide an overall license.
+[Licensing](https://www.researchobject.org/ro-crate/1.1/contextual-entities.html#licensing-access-control-and-copyright) in RO-Crate can be assigned to any data entity, allowing an RO-Crate to have a mix of licenses for different files, compared to BCO which can only provide an overall license.
 
-Each `license` identifier can thus be expanded. In this case <https://github.com/nf-core/chipseq/blob/1.2.1/LICENSE> is the specific instance of the MIT license with _(c) copyright_ inserted. To classify it as MIT license, ideally [SPDX identifiers]() should be used (see also [schemaorg/suggestions-questions-brainstorming#251](https://github.com/schemaorg/suggestions-questions-brainstorming/issues/251).
+Each `license` identifier can thus be expanded. In this case <https://github.com/nf-core/chipseq/blob/2.0.0/LICENSE> is the specific instance of the MIT license with _(c) copyright_ inserted. To classify it as MIT license, ideally [SPDX identifiers]() should be used (see also [schemaorg/suggestions-questions-brainstorming#251](https://github.com/schemaorg/suggestions-questions-brainstorming/issues/251).
 
 ```json
     {
-      "@id": "https://github.com/nf-core/chipseq/blob/1.2.1/LICENSE",
+      "@id": "https://github.com/nf-core/chipseq/blob/2.0.0/LICENSE",
       "@type": "CreativeWork",
       "name": "MIT License",
       "identifier": "https://spdx.org/licenses/MIT"
