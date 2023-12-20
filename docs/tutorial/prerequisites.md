@@ -15,7 +15,7 @@ Below we'll use [Conda](https://conda.io/), which can be installed for all major
 
 ### Install Conda
 
-First follow instructions for [installing conda](https://bioconda.github.io/user/install.html#install-conda). 
+First follow instructions for [installing conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html). 
 
 For Linux:
 

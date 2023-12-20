@@ -7,15 +7,15 @@ sort: 5
 
 The `execution_domain` should refer to actual the workflow script being executed. 
 
-This is a bit of a challenge in this example as we have not bundled the `*.nf` file in the BCO, but ran it by refernece `nf-core/chipseq` which Nextflow then retrieved from GitHub. The web page <https://nf-co.re/chipseq> gives great information for humans, but is in HTML and not executable by workflow engines. 
+This is a bit of a challenge in this example as we have not bundled the `*.nf` file in the BCO, but ran it by reference `nf-core/chipseq` which Nextflow then retrieved from GitHub. The web page <https://nf-co.re/chipseq> gives great information for humans, but is in HTML and not executable by workflow engines. 
 
-Taking into consideration the `-revision 1.2.2` we then navigate from <https://nf-co.re/chipseq> to <https://github.com/nf-core/chipseq>, select the [tag 1.2.2](https://github.com/nf-core/chipseq/tree/1.2.2) and find <https://github.com/nf-core/chipseq/blob/1.2.2/main.nf> - but again this is HTML, so we use the **Raw** button to find <https://raw.githubusercontent.com/nf-core/chipseq/1.2.2/main.nf>.
+Taking into consideration the `-revision 2.0.0` we then navigate from <https://nf-co.re/chipseq> to <https://github.com/nf-core/chipseq>, select the [tag 2.0.0](https://github.com/nf-core/chipseq/tree/2.0.0) and find <https://github.com/nf-core/chipseq/blob/2.0.0/main.nf> - but again this is HTML, so we use the **Raw** button to find <https://raw.githubusercontent.com/nf-core/chipseq/2.0.0/main.nf>.
 
 This can then be described in the BCO in the `script` array, for `script_driver` we use `nextflow` as it matches the command line (Note: there is currently no registry of known `script_driver` values).
 
 ```json
     "execution_domain": {
-        "script": ["https://raw.githubusercontent.com/nf-core/chipseq/1.2.2/main.nf"],
+        "script": ["https://raw.githubusercontent.com/nf-core/chipseq/2.0.0/main.nf"],
         "script_driver": "nextflow"
     }
 ```
@@ -31,4 +31,4 @@ A challenge here is that we have not indicated how the workflow engine itself sh
     }
 ```
 
-In one way this is more useful, as it directly executable - at least if the Conda [environment.yml](environment.yml) has been activated. On the other side `run.sh` provides absolutely no details about the data analysis performed, and as the purpose of the BCO is to submit a workflow, we instead show the `main.nf` that lists the individual steps, matching the `pipeline_steps` section of the BCO.
+In one way this is more useful, as it directly executable - at least if the Conda [environment.yml](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) has been activated. On the other side `run.sh` provides absolutely no details about the data analysis performed, and as the purpose of the BCO is to submit a workflow, we instead show the `main.nf` that lists the individual steps, matching the `pipeline_steps` section of the BCO.

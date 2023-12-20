@@ -54,7 +54,7 @@ Min Consensus Reps  : 1
 …
 ```
 
-The workflow will take a while to run. If you previously skipped ahead, now go back to create the [skeleton BCO](#skeleton-bco)
+The workflow will take a while to run. If you previously skipped ahead, now go back to create the [skeleton BCO](https://biocompute-objects.github.io/bco-ro-crate/tutorial/starting.html#skeleton-bco)
 
 Some workflow system require explicit inputs, while others have them declared as part of the workflow or the workflow config. Nextflow have both options, in this case we used the its [`test` profile](https://github.com/nf-core/chipseq/blob/1.2.2/conf/test.config) to pick the minimal test inputs suitable for testing.
 
