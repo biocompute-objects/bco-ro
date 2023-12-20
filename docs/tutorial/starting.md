@@ -235,7 +235,7 @@ We'll start by describing the RO-Crate itself under the `./` Dataset, including 
 }
 ```
 
-Already you will notice some differences from the BCO. The `name` could match the `provenance_domain/name` of the BCO - but as the BCO focus more on the workflow and the Dataset includes all the files we've changed it to include `"Workflow run of.."`. However if your RO-Crate did not include workflow results, then the two could have the same title. `description` allow us to provide a longer description - comparable to BCO's `usability_domain` which we'll populate later, but again decribing the whole dataset.
+Already you will notice some differences from the BCO. The `name` could match the `provenance_domain/name` of the BCO - but as the BCO focus more on the workflow and the Dataset includes all the files we've changed it to include `"Workflow run of.."`. However if your RO-Crate did not include workflow results, then the two could have the same title. `description` allow us to provide a longer description - comparable to BCO's `usability_domain` which we'll populate later, but again describing the whole dataset.
 
 The reason these fields are mainly at dataset level is that we can further describe individual files and resources later as separate [data entities](https://www.researchobject.org/ro-crate/1.1/data-entities.html). Therefore here the `author` of the dataset is  <https://orcid.org/0000-0001-9842-9718>, the ORCID identifier for Stian, as he ran the workflow and gathered (most of) the files, and `license` of the dataset (the whole folder) can be different from the license of the workflow. If need be `license`, `author` etc. can be different on the `ro-crate-metadata.json` entity if someone else made this JSON.
 
